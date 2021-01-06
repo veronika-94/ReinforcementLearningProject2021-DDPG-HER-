@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  5 JAN 2021 22:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  6 JAN 2021 20:42
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -157,37 +157,55 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 
 {C:/Users/Veronica/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 Chapter 1.
+<reinforcement.jpg, id=7, 421.575pt x 162.6075pt>
+File: reinforcement.jpg Graphic file (type jpg)
+<use reinforcement.jpg>
+Package pdftex.def Info: reinforcement.jpg  used on input line 19.
+(pdftex.def)             Requested size: 210.78697pt x 81.30354pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--32
+
+ []
+
 [1
 
-]
+ <./reinforcement.jpg>] [2]
 Chapter 2.
-[2
+[3
 
 ]
+<fetchpush.png, id=24, 256.5585pt x 185.493pt>
+File: fetchpush.png Graphic file (type png)
+<use fetchpush.png>
+Package pdftex.def Info: fetchpush.png  used on input line 58.
+(pdftex.def)             Requested size: 128.27893pt x 92.74626pt.
+ [4 <./fetchpush.png>]
 Chapter 3.
-[3
+[5
 
 ] (Report.aux) ) 
 Here is how much of TeX's memory you used:
- 1655 strings out of 493312
- 21465 string characters out of 3138889
- 79064 words of memory out of 3000000
- 5228 multiletter control sequences out of 15000+200000
- 9321 words of font info for 34 fonts, out of 3000000 for 9000
+ 1673 strings out of 493312
+ 21741 string characters out of 3138889
+ 81084 words of memory out of 3000000
+ 5241 multiletter control sequences out of 15000+200000
+ 9667 words of font info for 35 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,6n,20p,1207b,191s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,6n,20p,1287b,217s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Veronica/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Veroni
-ca/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Veroni
+ca/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
 C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr17.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on Report.pdf (4 pages, 91971 bytes).
+/cm/cmr12.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr17.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Veronica/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Veronica/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Report.pdf (6 pages, 195184 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
+ 59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
