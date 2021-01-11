@@ -12,7 +12,7 @@ if __name__ == '__main__':
             n_actions=env.action_space.shape[0])
     n_episodes = 50000
     
-    figure_file = '/Users/admin/Documents/codes_python/rl_exam/FetchPush_her/plots/fetchpush.png'
+    figure_file = '/Users/admin/Documents/codes_python/rl_exam/FetchPush_her_v2/plots/fetchpush.png'
     
     best_score = env.reward_range[0]
     score_history = []
@@ -55,9 +55,11 @@ if __name__ == '__main__':
         for p in range(45):
             if not done:
                 action = agent.choose_action(state,goal,evaluate)
-                env.render()
+             
                 env_dict_, reward, done, info = env.step(action)
                 state_ = env_dict_['observation']
+        
+                env.render()
                 agent.remember(state, action, reward, state_, done, goal)
                 achieved_goal1 = []
                 for x in range(3,6):
@@ -74,55 +76,54 @@ if __name__ == '__main__':
                     success += 1
                     print('episode finished after steps                                ', p )
                     break
-        print('success is ', success, 'after', episode, 'episodes')
-        puck_pos1 =[]
-        for l in range(3,6):
-            puck_pos1.append(state[l])
-        puck_pos1 = np.array(puck_pos1)
-        sum_ = 0
-        for element in range(2):
-            
-            diff = puck_pos1[element] - initial_puck[element]
-            sum_ += diff
-        if abs(sum_) > 0.01: ## entering her 
-            for _ in range(16):
-                new_goal=transition[_][5] #position of the puck 
-                #new_goal = np.copy(state[:3])
-                #for i in range(3,6):   
-                    #new_goal.append(transition[_][3][i]) ### The new goal is now the position of the puck, which should be aprox the same for every step
-                #new_goal = np.array(new_goal)
-                #state_transition = transition[_][3]
-                end_eff_pos = transition[_][3][:3]
-                if np.linalg.norm(end_eff_pos - new_goal, axis=-1) <= 0.05:
-                    print('end_eff - puck goal')
-                    agent.remember(transition[_][0], transition[_][1], 0,
-                                           transition[_][3], True, new_goal)
+        if not done:
+            print('success is ', success, 'after', episode, 'episodes')
+            puck_pos1 =[]
+            for l in range(3,6):
+                puck_pos1.append(state[l])
+            puck_pos1 = np.array(puck_pos1)
+            sum_ = 0
+            for element in range(3):
+                
+                diff = puck_pos1[element] - initial_puck[element]
+                sum_ += diff
+            if abs(sum_) > 0.05: ## entering her 
+                for _ in range(4):
+                    new_goal=transition[_][5] #position of the puck 
+                    
+                    end_eff_pos = transition[_][3][:3]
+                    if np.linalg.norm(end_eff_pos - new_goal, axis=-1) <= 0.05:
+                        print('end_eff - puck goal')
+                        agent.remember(transition[_][0], transition[_][1], 0,
+                                               transition[_][3], True, new_goal)
+                        agent.learn()
+                        break
+                    agent.remember(transition[_][0], transition[_][1], transition[_][2],
+                                   transition[_][3], False, new_goal)
                     agent.learn()
-                    break
-                agent.remember(transition[_][0], transition[_][1], transition[_][2],
-                               transition[_][3], False, new_goal)
-                         #### The first if (above one) is now replacing the goal with the position of the puck insteadof the desired goal which is the red ball                  
-                #desired_goal = transition[_][4]
-                #achieved_goal = new_goal
-                #achieved_goal = []
-                #for a in range(3,6):   
-                    #achieved_goal.append(state_transition[a])
-                #achieved_goal = np.array(achieved_goal)
-                #puck_rand = []
-                #for a in range(3,6):   
-                    #puck_rand.append(transition[index][3][a])
-            for _ in range(16):
-                puck_rand = np.copy(transition[_][5])
-                if  np.linalg.norm(goal - puck_rand, axis=-1) <= 0.05:
-                     print('                                                                                        yeah!!')
-                     agent.remember(transition[_][0], transition[_][1], 0,
-                                           transition[_][3], True, puck_rand)
-                     agent.learn()
-                     break
-            
-                agent.remember(transition[_][0], transition[_][1], transition[_][2],
-                                           transition[_][3], False, puck_rand)
-                agent.learn()
+                             #### The first if (above one) is now replacing the goal with the position of the puck insteadof the desired goal which is the red ball                  
+                    #desired_goal = transition[_][4]
+                    #achieved_goal = new_goal
+                    #achieved_goal = []
+                    #for a in range(3,6):   
+                        #achieved_goal.append(state_transition[a])
+                    #achieved_goal = np.array(achieved_goal)
+                    #puck_rand = []
+                    #for a in range(3,6):   
+                        #puck_rand.append(transition[index][3][a])
+                for _ in range(4):
+                    puck_rand = np.copy(transition[_][5])
+                    end_eff_pos = transition[_][3][:3]
+                    if  np.linalg.norm(end_eff_pos - goal, axis=-1) <= 0.05:
+                         print('                                                                                        yeah!!')
+                         agent.remember(transition[_][0], transition[_][1], 0,
+                                               transition[_][3], True, puck_rand)
+                         agent.learn()
+                         break
+                
+                    agent.remember(transition[_][0], transition[_][1], transition[_][2],
+                                               transition[_][3], False, puck_rand)
+                    agent.learn()
     
         if episode > 0 and episode % 100 == 0:
             print('success rate for last 100 episodes after', episode, ':', success)
