@@ -54,8 +54,10 @@ if __name__ == '__main__':
         score = 0
         for p in range(45):
             if not done:
-                action = agent.choose_action(state,goal,evaluate)
              
+                action = agent.choose_action(state,goal,evaluate)
+
+                
                 env_dict_, reward, done, info = env.step(action)
                 state_ = env_dict_['observation']
         
@@ -63,7 +65,7 @@ if __name__ == '__main__':
                 agent.remember(state, action, reward, state_, done, goal)
                 achieved_goal1 = []
                 for x in range(3,6):
-                    achieved_goal1.append(state[x])
+                    achieved_goal1.append(state_[x])
                 achieved_goal1 = np.array(achieved_goal1)
                 transition.append((state, action, reward, state_, goal, achieved_goal1))
                 if reward ==0:
@@ -87,20 +89,20 @@ if __name__ == '__main__':
                 
                 diff = puck_pos1[element] - initial_puck[element]
                 sum_ += diff
-            if abs(sum_) > 0.05: ## entering her 
-                for _ in range(4):
-                    new_goal=transition[_][5] #position of the puck 
+            if abs(sum_) > 0.0005: ## entering her 
+               # for _ in range(16):
+                   # new_goal=transition[_][5] #position of the puck 
                     
-                    end_eff_pos = transition[_][3][:3]
-                    if np.linalg.norm(end_eff_pos - new_goal, axis=-1) <= 0.05:
-                        print('end_eff - puck goal')
-                        agent.remember(transition[_][0], transition[_][1], 0,
-                                               transition[_][3], True, new_goal)
-                        agent.learn()
-                        break
-                    agent.remember(transition[_][0], transition[_][1], transition[_][2],
-                                   transition[_][3], False, new_goal)
-                    agent.learn()
+                   # end_eff_pos = transition[_][3][:3]
+                    #if np.linalg.norm(end_eff_pos - new_goal, axis=-1) <= 0.05:
+                     #   print('end_eff - puck goal')
+                     #   agent.remember(transition[_][0], transition[_][1], 0,
+                                 #              transition[_][3], True, new_goal)
+                     #   agent.learn()
+                    #    break
+                   # agent.remember(transition[_][0], transition[_][1], transition[_][2],
+                                  # transition[_][3], False, new_goal)
+                   # agent.learn()
                              #### The first if (above one) is now replacing the goal with the position of the puck insteadof the desired goal which is the red ball                  
                     #desired_goal = transition[_][4]
                     #achieved_goal = new_goal
@@ -111,10 +113,10 @@ if __name__ == '__main__':
                     #puck_rand = []
                     #for a in range(3,6):   
                         #puck_rand.append(transition[index][3][a])
-                for _ in range(4):
+                for _ in range(24):
                     puck_rand = np.copy(transition[_][5])
                     end_eff_pos = transition[_][3][:3]
-                    if  np.linalg.norm(end_eff_pos - goal, axis=-1) <= 0.05:
+                    if  np.linalg.norm(puck_rand - goal, axis=-1) <= np.linalg.norm(puck_rand - initial_puck, axis=-1):
                          print('                                                                                        yeah!!')
                          agent.remember(transition[_][0], transition[_][1], 0,
                                                transition[_][3], True, puck_rand)
