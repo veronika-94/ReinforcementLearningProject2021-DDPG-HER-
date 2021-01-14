@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.12.8)  13 JAN 2021 12:36
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  12 JAN 2021 23:41
+>>>>>>> 1d550d74eb36e5edac16815b4ed99dd1a7d22b6f
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -161,7 +165,7 @@ File: reinforcement.jpg Graphic file (type jpg)
 Package pdftex.def Info: reinforcement.jpg  used on input line 19.
 (pdftex.def)             Requested size: 210.78697pt x 81.30354pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 28--32
+Underfull \hbox (badness 10000) in paragraph at lines 32--34
 
  []
 
@@ -172,17 +176,74 @@ Chapter 2.
 [3
 
 ]
+<<<<<<< HEAD
 <fetchpush.png, id=25, 256.5585pt x 185.493pt>
+=======
+<ddpg.png, id=25, 531.78674pt x 392.06474pt>
+File: ddpg.png Graphic file (type png)
+<use ddpg.png>
+Package pdftex.def Info: ddpg.png  used on input line 58.
+(pdftex.def)             Requested size: 345.65729pt x 254.83905pt.
+
+Overfull \hbox (0.65729pt too wide) in paragraph at lines 58--59
+ [][] 
+ []
+
+[4 <./ddpg.png>]
+<her.png, id=30, 666.69075pt x 540.21825pt>
+File: her.png Graphic file (type png)
+<use her.png>
+Package pdftex.def Info: her.png  used on input line 71.
+(pdftex.def)             Requested size: 333.34456pt x 270.10846pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 77.
+("C:\Users\Veronica\AppData\Local\Programs\MiKTeX 2.9\tex/latex\base\omscmr.fd"
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
+ [5]
+<fetchcomparison.png, id=34, 520.94624pt x 341.47575pt>
+File: fetchcomparison.png Graphic file (type png)
+<use fetchcomparison.png>
+Package pdftex.def Info: fetchcomparison.png  used on input line 89.
+(pdftex.def)             Requested size: 338.61105pt x 221.9566pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6 <./her.png>]
+<fetchpush.png, id=39, 256.5585pt x 185.493pt>
+>>>>>>> 1d550d74eb36e5edac16815b4ed99dd1a7d22b6f
 File: fetchpush.png Graphic file (type png)
 <use fetchpush.png>
-Package pdftex.def Info: fetchpush.png  used on input line 58.
+Package pdftex.def Info: fetchpush.png  used on input line 103.
 (pdftex.def)             Requested size: 128.27893pt x 92.74626pt.
- [4 <./fetchpush.png>]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+[7 <./fetchcomparison.png>] [8 <./fetchpush.png>]
 Chapter 3.
-[5
+[9
+
+]
+Underfull \hbox (badness 1112) in paragraph at lines 138--139
+[]\OT1/cmr/m/n/10 Plappert, Matthias, et al. "Multi-goal re-in-force-ment learn
+-ing: Chal-
+ []
+
+[10
 
 ] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  1816 strings out of 480608
  24668 string characters out of 5903630
  267019 words of memory out of 5000000
@@ -204,6 +265,32 @@ Output written on Report.pdf (6 pages, 188742 bytes).
 PDF statistics:
  61 PDF objects out of 1000 (max. 8388607)
  41 compressed objects within 1 object stream
+=======
+ 1716 strings out of 493312
+ 22430 string characters out of 3138889
+ 83123 words of memory out of 3000000
+ 5278 multiletter control sequences out of 15000+200000
+ 10273 words of font info for 37 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 27i,6n,20p,1997b,217s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Veronica/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Veroni
+ca/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr12.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr17.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Veronica/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Veronica/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/U
+sers/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmti10.pfb>
+Output written on Report.pdf (11 pages, 628651 bytes).
+PDF statistics:
+ 87 PDF objects out of 1000 (max. 8388607)
+>>>>>>> 1d550d74eb36e5edac16815b4ed99dd1a7d22b6f
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
