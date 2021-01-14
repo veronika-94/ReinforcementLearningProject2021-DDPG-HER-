@@ -25,24 +25,41 @@ This proceeds until the goal is reached.
 %Reinforcement Learning also differs from the other machine learning techniques. In fact in supervised learning there is a "supervisor" which has the knowledge of the environment and shares it with the agent to complete the task. while in reinforcement learning is the agent that learns from its own experience. Moreover there is a reward function which acts as a feedback to the agent. With respect to unsupervised learning where there is no mapping from input to output, in reinforcement learning the mapping is present. 
 %This type of learning is usually modeled through Markov Decision Process. If the environment is non-deterministic we need a transition model $P(s'|s,a)$ and the utility function is the sum of the received rewards.
 
-In few words, an \textit{agent} has a set of \textit{action space} which it can perform in a given \textit{environment} for which it gets \textit{rewarded} if that action meets some criteria. The agent learn to take actions for maximizing this reward.
-This is the basic principle of reinforcement learning. In particular reinforcement learnin is a field of artificial intelligence that has several applications in the robotics field, which is the field of this project.
+In few words, an \textit{agent} chooses an action from the \textit{action space} which it can perform in a given \textit{environment} for which it gets \textit{rewarded} if that action meets some criteria. The agent learn to take actions for maximizing this reward.
 
+\section{Environment and Tools}
  
 OpenAI Gym is a open source tool that allows us to work with algorithm for reinforcement. Previously there aren't many standard environment that could be used to the developed of these algorithms. In fact with the rise of Gym, reinforcement learning becomes more practical and implementable with respect to the traditional machine learning methods. Gym is available on the corresponding GitHub repository. On the other hand there is also MuJoCo (Multi-Joint dynamics with Contact). This is a physical engine for detailed, efficient rigid body simulations with contacts. It has a dynamic library with C/C++ API. mujoco-py allows using MuJoCo from Python3. It includes an XML parser, model compiler, simulator, and interactive OpenGL visualizer. To use it a specific license is needed; we use this for visualizing and using our environment, and to provide a graphical visualization of the results reached. MuJoCo is also customizable, so the environment can be modified by changing its XML code. This permits also to create new environments for implementing new tasks. However the best part is that MuJoCo provides the physical interactivity (like calculation of contact forces) which helps an engineer or researcher to test their model rigorously before moving to production.
-\\
-
 
 This work consists in implementing the FetchPush-v1 environment provided by Gym OpenAI (using MuJoCo as physical simulator), and by using a specific algorithm, which in our specific case is DDPG+HER, experimenting on this environment. Also a specific framework will be assigned for  implementing the code. All the result reached will be illustrated in Chapter \ref{exp}. While in the following sections we will exploit in details the algorithm used for our task, the environment, and the implementation framework.
 
+\subsection{FetchPush Gym Environment}
+The release provided by OpenAI Gym, contains four environments using the Fetch research platform. These environments use the MuJoCo physics simulator. Our environment is, as previously mentioned, FetchPush-v1 (Figure \ref{Fig: fetchpush}). Fetch goal is to move a box by pushing it until it reaches a desired goal position. This tasks has the concept of a "goal". By default it uses a sparse reward of -1 if the desired goal was not yet achieved and 0 if it was achieved (within some tolerance). This because the sparse rewards are more realistic in robotics applications and the developers encourage their use.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{fetchpush.png}
+\caption{\label{Fig: fetchpush} FetchPush-v1 Gym environment.}
+\end{figure}
+
+The Fetch environment is based on the 7-DoF Fetch robotics arm which has a two-fingered parallel gripper that are locked to prevent grasping. The learned behavior
+is usually a mixture of pushing and rolling. The goal is 3-dimensional and describes the desired position of the object (or the end-effector for reaching). Rewards are sparse and binary in fact the agent obtains a reward of 0 if the object is at the target location and −1 otherwise. Actions are 4-dimensional: 3 dimensions specify the desired gripper movement in Cartesian coordinates and the last dimension controls opening and closing of the gripper that in FetchPush-v1 is always closed. However in other environments, like FetchPickandPlace-v1, this last dimension is very relevant for the task.
+Observations include the Cartesian position of the gripper, its linear velocity as well as the position and linear velocity of the robot's gripper. If an object is present, we will have also the object's Cartesian position and rotation using Euler angles, its linear and angular velocities, but also the position and linear velocities relative to gripper.
+The observation space is of type gym.spaces.Dict space, with at least three keys that are:
+\begin{itemize}
+\item observation: It's an array of 25 elements. The first 3 elements represent the position of the gripper, the following 3 is the achieved goal so the position of the box in the actual state. 
+\item desired\_goal: The goal that the agent has to achieve. In FetchPush-v1 would be the 3-dimensional target position on which we would like the box will be
+\item achieved\_goal: The goal that the agent has currently achieved instead. Ideally, this would be the same as desired\_goal as quickly as possible.
+\end{itemize}
+
 
 \chapter{Implementation Assignment}
-To implement this work a specific framework has been assigned. We have used Python3 and TensorFlow 2.0. In particular we used TensoFlow for building the neural networks for our actor and critic.
 
 \section{DDPG + HER Algorithm}
+Deep Deterministic Policy Gradient (DDPG) (illustrated in \cite{ddpg}) is a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces.
 
 \subsection{DDPG (Deep Deterministic Policy Gradient)}
-Deep Deterministic Policy Gradient (DDPG) (illustrated in \cite{ddpg}) is a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces. It concurrently learns a Q-function and a policy. As DPG, it uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy. DDPG, being an actor-critic technique, consists of two models: Actor and Critic. The Actor is a policy network that takes the state as input and outputs the exact action (continuous), instead of a probability distribution over actions. So the actor function $\mu(s|\theta^{\mu})$ specifies the current policy by deterministically mapping states to a specific action. The Critic $Q(s,a)$ is a Q-value network that takes state and action as input and outputs the Q-value. It is learned using Bellman equation as in Q-learning. DDPG is used in the continuous action setting and the word "Deterministic" in DDPG refers to the fact that the actor computes the action directly instead of a probability distribution over actions. This approach is closely connected to Q-learning, and is motivated the same way: if you know the optimal action-value function $Q^*(s,a)$, then in any given state, the optimal action $a^*(s)$ can be found by solving:
+It concurrently learns a Q-function and a policy. As DPG, it uses off-policy data and the Bellman equation to learn the Q-function, and uses the Q-function to learn the policy. DDPG, being an actor-critic technique, consists of two models: Actor and Critic. The Actor is a policy network that takes the state as input and outputs the exact action (continuous), instead of a probability distribution over actions. So the actor function $\mu(s|\theta^{\mu})$ specifies the current policy by deterministically mapping states to a specific action. The Critic $Q(s,a)$ is a Q-value network that takes state and action as input and outputs the Q-value. It is learned using Bellman equation as in Q-learning. DDPG is used in the continuous action setting and the word "Deterministic" in DDPG refers to the fact that the actor computes the action directly instead of a probability distribution over actions. This approach is closely connected to Q-learning, and is motivated the same way: if you know the optimal action-value function $Q^*(s,a)$, then in any given state, the optimal action $a^*(s)$ can be found by solving:
 
 \begin{equation}
 a^*(s) = argmax_a Q^*(s, a)
@@ -95,24 +112,7 @@ The second reason is that a dense reward biases the policy to a specific strateg
  
 
 
-\section{Gym Environment}
-The release provided by OpenAI Gym, contains four environments using the Fetch research platform. These environments use the MuJoCo physics simulator. Our environment is, as previously mentioned, FetchPush-v1 (Figure \ref{Fig: fetchpush}). Fetch goal is to move a box by pushing it until it reaches a desired goal position. This tasks has the concept of a "goal". By default it uses a sparse reward of -1 if the desired goal was not yet achieved and 0 if it was achieved (within some tolerance). This because the sparse rewards are more realistic in robotics applications and the developers encourage their use.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.5]{fetchpush.png}
-\caption{\label{Fig: fetchpush} FetchPush-v1 Gym environment.}
-\end{figure}
-
-The Fetch environment is based on the 7-DoF Fetch robotics arm which has a two-fingered parallel gripper that are locked to prevent grasping. The learned behavior
-is usually a mixture of pushing and rolling. The goal is 3-dimensional and describes the desired position of the object (or the end-effector for reaching). Rewards are sparse and binary in fact the agent obtains a reward of 0 if the object is at the target location and −1 otherwise. Actions are 4-dimensional: 3 dimensions specify the desired gripper movement in Cartesian coordinates and the last dimension controls opening and closing of the gripper that in FetchPush-v1 is always closed. However in other environments, like FetchPickandPlace-v1, this last dimension is very relevant for the task.
-Observations include the Cartesian position of the gripper, its linear velocity as well as the position and linear velocity of the robot's gripper. If an object is present, we will have also the object's Cartesian position and rotation using Euler angles, its linear and angular velocities, but also the position and linear velocities relative to gripper.
-The observation space is of type gym.spaces.Dict space, with at least three keys that are:
-\begin{itemize}
-\item observation: The actual observation of the environment, for example robot state and position of objects.
-\item desired\_goal: The goal that the agent has to achieve. In FetchPush-v0 would be the 3-dimensional target position on which we would like the box will be
-\item achieved\_goal: The goal that the agent has currently achieved instead. Ideally, this would be the same as desired\_goal as quickly as possible.
-\end{itemize}
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  14 JAN 2021 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  14 JAN 2021 16:30
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -162,68 +162,61 @@ File: reinforcement.jpg Graphic file (type jpg)
 <use reinforcement.jpg>
 Package pdftex.def Info: reinforcement.jpg  used on input line 19.
 (pdftex.def)             Requested size: 210.78697pt x 81.30354pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--34
-
- []
-
 [1
 
- <./reinforcement.jpg>] [2]
+ <./reinforcement.jpg>]
+<fetchpush.png, id=17, 256.5585pt x 185.493pt>
+File: fetchpush.png Graphic file (type png)
+<use fetchpush.png>
+Package pdftex.def Info: fetchpush.png  used on input line 41.
+(pdftex.def)             Requested size: 128.27893pt x 92.74626pt.
+Missing character: There is no â in font cmr10!
+Missing character: There is no ˆ in font cmr10!
+Missing character: There is no ’ in font cmr10!
+ [2 <./fetchpush.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 50.
+
+("C:\Users\Veronica\AppData\Local\Programs\MiKTeX 2.9\tex/latex\base\omscmr.fd"
+File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
+ [3]
 Chapter 2.
-[3
+[4
 
 ]
-<ddpg.png, id=25, 531.78674pt x 392.06474pt>
+<ddpg.png, id=29, 531.78674pt x 392.06474pt>
 File: ddpg.png Graphic file (type png)
 <use ddpg.png>
-Package pdftex.def Info: ddpg.png  used on input line 58.
+Package pdftex.def Info: ddpg.png  used on input line 75.
 (pdftex.def)             Requested size: 345.65729pt x 254.83905pt.
 
-Overfull \hbox (0.65729pt too wide) in paragraph at lines 58--59
+Overfull \hbox (0.65729pt too wide) in paragraph at lines 75--76
  [][] 
  []
 
-[4 <./ddpg.png>]
-<her.png, id=30, 666.69075pt x 540.21825pt>
+[5 <./ddpg.png>]
+<her.png, id=34, 666.69075pt x 540.21825pt>
 File: her.png Graphic file (type png)
 <use her.png>
-Package pdftex.def Info: her.png  used on input line 71.
+Package pdftex.def Info: her.png  used on input line 88.
 (pdftex.def)             Requested size: 333.34456pt x 270.10846pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 77.
-("C:\Users\Veronica\AppData\Local\Programs\MiKTeX 2.9\tex/latex\base\omscmr.fd"
-File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
- [5]
-<fetchcomparison.png, id=34, 520.94624pt x 341.47575pt>
+[6]
+<fetchcomparison.png, id=39, 520.94624pt x 341.47575pt>
 File: fetchcomparison.png Graphic file (type png)
 <use fetchcomparison.png>
-Package pdftex.def Info: fetchcomparison.png  used on input line 89.
+Package pdftex.def Info: fetchcomparison.png  used on input line 106.
 (pdftex.def)             Requested size: 338.61105pt x 221.9566pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[6 <./her.png>]
-<fetchpush.png, id=39, 256.5585pt x 185.493pt>
-File: fetchpush.png Graphic file (type png)
-<use fetchpush.png>
-Package pdftex.def Info: fetchpush.png  used on input line 103.
-(pdftex.def)             Requested size: 128.27893pt x 92.74626pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-Missing character: There is no â in font cmr10!
-Missing character: There is no ˆ in font cmr10!
-Missing character: There is no ’ in font cmr10!
-[7 <./fetchcomparison.png>] [8 <./fetchpush.png>]
+[7 <./her.png>] [8 <./fetchcomparison.png>]
 Chapter 3.
 [9
 
@@ -258,7 +251,7 @@ ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/U
 sers/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb>
-Output written on Report.pdf (11 pages, 628652 bytes).
+Output written on Report.pdf (11 pages, 628715 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
