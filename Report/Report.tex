@@ -53,7 +53,7 @@ The observation space is of type gym.spaces.Dict space, with at least three keys
 \end{itemize}
 
 
-\chapter{Implementation Assignment}
+\chapter{Implementation Assignment \label{ddpgalgo}}
 
 \section{DDPG + HER Algorithm}
 Deep Deterministic Policy Gradient (DDPG) (illustrated in \cite{ddpg}) is a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces.
@@ -122,15 +122,59 @@ The second reason is that a dense reward biases the policy to a specific strateg
 As previously  mentioned, our work consisted of exploring in FetchPush-v1 environment, implementing the algorithm DDPG+HER. To implement our work we write a code in Python3 and TensorFlow 2.0. The code is structured in this way:
 
 \begin{itemize}
-\item a \textit{buffer.py} file in which is implemented the replay buffer in which the transition are stored. These transitions include state, action, reward, actual state, a flag \textit{done} and the goal. This transition will be then used to define the new goals for HER implementation.
+\item a \textit{buffer.py} file in which is implemented the replay buffer with high dimension in which the transitions are stored through the use of agent function \textit{remember()}. These transitions include state, action, reward, new state reached after implementing an action, a flag \textit{done} which indicates if the goal is reached and the goal. These stored transitions will be then used to define the new goals for HER implementation. In this file is also defined a function called \textit{sample\_buffer()} which is used in DDPG implementation for sampling a random minibatch of N transitions from the replay buffer.
 
-\item a \textit{networks.py} file in which the actor and critic networks are created by following the conventional parameters used in this case of tasks found on several papers regarding this argument. The networks are created by using \textit{tensorflow.keras} and are formed by only dense layers with \textit{relu} as activation function, and a final critic dense output layer without activation function, and a final actor dense output layer with \textit{tanh} as activation function.
+\item a \textit{ddpg\_tf2.py} file in which all the parameters for the agent are defined and the DDPG algorithm is implemented. Here are also initialized the target actor and target critic networks with the parameters reported in Table \ref{table}, size of the replay buffer, the value of the discount factor $\gamma$, the value for updating the target networks $\tau$ and also the noise is set. It is used for adding noise to the policy for the choice of the action to execute. In this file are also created the actor and critic target networks by coping the original actor and critic networks. To each of the for networks is applied an Adam optimizer with different learning rate for the actor and critic networks. Here are defined a function for updating the network parameters that takes tau as input and implement the last stage of the pseudocode of DDPG algorithm, a remember function for storing the transitions, a function for saving and one for loading the models of the networks. In the file is also defined a function for choosing an action which takes as input the state and the goal, concatenate these as illustrated in the pseudocode of HER and gives it to the actor which computes the policy for choosing the action. This function returns the action. The last function defined is the learning function, in which the critic network is updated by computing the target and applying the Mean Squared Error loss. While the actor network is updated by applying the gradient ascendant. this permits to update the networks parameters.
 
-\item a \textit{ddpg\_tf2.py} file in which all the parameters for the agent are defined and the DDPG algorithm is implemented. Here are also initialized the target actor and target critic networks. The \textit{adam} optimizer is also defined with different learning rate for actor and critic networks.
 
-\item a \textit{main\_ddpg.py} file in which we have defined our environment. To the agent are provided the environment, the dimension of the \textit{observation} space as input dimension, the dimension of the \textit{desired\_goal} and the \textit{action\_space} dimension. 
+\item a \textit{networks.py} file in which the actor and critic networks are created by following the conventional parameters used in this kind of tasks found on several papers regarding this argument (also reported in Table \ref{table}). The networks are created by using \textit{tensorflow.keras} and are formed by only dense layers with \textit{relu} as activation function, and a final critic dense output layer without activation function, and a final actor dense output layer with \textit{tanh} as activation function. Moreover the weights of the networks for training are saved in 2 files with extension \textit{.h5}, one for the critic network and one for the actor network. the critic network will return the Q function, while the actor network will return the policy $\mu$.
+
+
+
+\item a \textit{main\_ddpg.py} file in which the environment is imported. To the agent, so the DDPG algorithm, are provided the environment, the dimension of the \textit{observation} space as input dimension, the dimension of the \textit{desired\_goal} and the \textit{action\_space} dimension. this file is created by following the stages of the pseudocodes as deeply illustrated in Chapter \ref{ddpgalgo}.
 
 \end{itemize}
+
+In Table \ref{table} are reported all the parameters used.
+\\
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|r|} 
+
+
+
+\hline
+
+\multicolumn{2}{|c|}{}\\
+\multicolumn{2}{|c|}{\textbf{\Large            Parameters Table}}\\
+\multicolumn{2}{|c|}{}\\
+
+\hline
+
+FC layers Critic 			& 2			\\
+FC Critic dimensions		& 512		\\
+Learning Rate Critic 		& 0.002		\\
+FC layers Actor 			& 2			\\
+FC Actor dimensions 		& 512		\\
+Learning Rate Critic 		& 0.001		\\
+Discount factor $\gamma$	& 0.99		\\
+Update factor $\tau$		& 0.005		\\	%or 1?
+Batch size					& 64		\\
+Noise						& 0.1		\\
+Replay Buffer dimension		& 1000000	\\
+							&			\\
+Episodes number				& 50000		\\
+
+
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{table} Parameters Table}
+\end{table}
+
+
+
 
 \begin{thebibliography}{}
 
