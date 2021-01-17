@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  16 JAN 2021 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  17 JAN 2021 10:32
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -225,13 +225,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--140
 
  []
 
-[10]
-Underfull \hbox (badness 1112) in paragraph at lines 182--183
+[10] [11]
+Underfull \hbox (badness 1112) in paragraph at lines 188--189
 []\OT1/cmr/m/n/10 Plappert, Matthias, et al. "Multi-goal re-in-force-ment learn
 -ing: Chal-
  []
 
-[11
+[12
 
 ] (Report.aux) ) 
 Here is how much of TeX's memory you used:
@@ -256,9 +256,9 @@ ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/U
 sers/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb>
-Output written on Report.pdf (12 pages, 632711 bytes).
+Output written on Report.pdf (13 pages, 634722 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

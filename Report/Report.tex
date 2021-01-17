@@ -135,7 +135,7 @@ As previously  mentioned, our work consisted of exploring in FetchPush-v1 enviro
 
 \end{itemize}
 
-In Table \ref{table} are reported all the parameters used.
+All the parameters we have used are taken from literature works and from the papers cited in the Bibliography. In Table \ref{table} are reported all the parameters used.
 \\
 
 \begin{table}[h]
@@ -173,6 +173,12 @@ Episodes number				& 50000		\\
 \caption{\label{table} Parameters Table}
 \end{table}
 
+
+\section{Experiments and Plots}
+We performed some experiments changing the way in which HER is implemented.
+First of all we implemented first only the DDPG algorithm but as we expected this provided no good results. Then we added also HER. In this experiment we implement a sort of \textit{episode} HER. It takes k random states from the same episode and replays them as the transition being replayed. We perform this in two ways, by taking the first 24 states of the same episode and the last 24 states of the same episode. They are not randomly taken but we reached the results illustrated in Figure ?. As we can see the learning produces good results reaching a success around 90\% in both cases. Also the test performs quite good.
+
+For the second experiment we try to change the parameter k that establish the number of states taken for replaying. We try to take 8 random parameters always from the same episode. 
 
 
 
