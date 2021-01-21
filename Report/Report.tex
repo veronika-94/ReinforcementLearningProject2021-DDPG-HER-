@@ -1,6 +1,8 @@
 \documentclass[a4paper]{report}
 \usepackage{amsmath} 
 \usepackage{graphicx}
+%\usepackage{geometry}
+%\geometry{a4paper, top=3cm, bottom=3cm, left=3.5cm, right=3.5cm}
 
 \title{DDPG + HER in FetchPush-v1 Gym Environment with Python3 and Tensorflow 2.0}
 \author{Simone De Angelis 1760464\\ Veronica Romano 1580844}
@@ -135,7 +137,7 @@ As previously  mentioned, our work consisted of exploring in FetchPush-v1 enviro
 
 \end{itemize}
 
-All the parameters we have used are taken from literature works and from the papers cited in the Bibliography. In Table \ref{table} are reported all the parameters used.
+All the parameters we have used are taken from literature works and from the papers cited in the Bibliography. In the following section the performed experiments are deeply explained. The following Table \ref{table} reports all the parameters used for all the experiments while the changed parameters will be illustrated in the specific section.
 \\
 
 \begin{table}[h]
@@ -160,25 +162,75 @@ FC Actor dimensions 		& 512		\\
 Learning Rate Critic 		& 0.001		\\
 Discount factor $\gamma$	& 0.99		\\
 Update factor $\tau$		& 0.005		\\	%or 1?
-Batch size					& 64		\\
 Noise						& 0.1		\\
 Replay Buffer dimension		& 1000000	\\
-							&			\\
-Episodes number				& 50000		\\
-
 
 \hline
 \end{tabular}
 \end{center}
-\caption{\label{table} Parameters Table}
+\caption{\label{table} Table of the parameters used for all the experiments}
 \end{table}
 
 
 \section{Experiments and Plots}
 We performed some experiments changing the way in which HER is implemented.
-First of all we implemented first only the DDPG algorithm but as we expected this provided no good results. Then we added also HER. In this experiment we implement a sort of \textit{episode} HER. It takes k random states from the same episode and replays them as the transition being replayed. We perform this in two ways, by taking the first 24 states of the same episode and the last 24 states of the same episode. They are not randomly taken but we reached the results illustrated in Figure ?. As we can see the learning produces good results reaching a success around 90\% in both cases. Also the test performs quite good.
+First of all we implemented first only the DDPG algorithm but as we expected this provided no good results. Then we added also HER. In this experiment we implement a  sort of \textit{episode} HER. It takes k random states from the same episode and replays them as the transition being replayed. We perform this in two ways, by taking the first 24 states of the same episode and the last 24 states of the same episode. They are not randomly taken. We performed a learning with 60000 episodes, and each episode is formed by 50 iterations or steps. During these iterations we evoked the learning function from the agent class each time also if the robotic arm didn't still reached the goal, so when \textit{done=False} and after adding the current transition to the replay buffer. If the robot reached the goal and so \textit{done=True}, we increased the success rate. While for each episode, after iterating all the 50 steps, if the robot has not still reached the goal and so \textit{done=False}, we take the final box position from the state (these are the third, forth and fifth components of the state). At this point if the HER condition is verified, such that the distance between the final box position and the initial box position is less or equal than 0.05, for each of the 24 states taken from the beginning or from the end, we take a random stored position for the box in the current episode. Now if the final box position is more close to the goal than to the starting position, we stored this transition with the random position of the box, and we perform the learning. However the learning is performed also if the last condition is not verified and so for each of the 24 transition considered. This because we consider the fact not only that the box is near to the goal but also the fact that the end-effector of the robotic arm has moved the box. As we can see the learning produces good results reaching a success around 90\% both by considering the first and the last 24 stored transition. However we have to mentioned that the training by considering the first 24 transitions is faster that the one that considers the last 24 transitions. In the Table \ref{exp1} are reported the specific parameters used for the first two experiments. The results are illustrated in Figure ? and Figure ?.
 
-For the second experiment we try to change the parameter k that establish the number of states taken for replaying. We try to take 8 random parameters always from the same episode. 
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|r|} 
+
+
+
+\hline
+
+\multicolumn{2}{|c|}{}\\
+\multicolumn{2}{|c|}{\textbf{\large       Experiment 1 Parameters Table}}\\
+\multicolumn{2}{|c|}{}\\
+
+\hline
+
+Batch Size 					& 64			\\
+Number of episodes			& 60000			\\
+k							& 24 (first and last)	\\
+
+
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{exp1} Table of the specific parameters used for the first two experiments.}
+\end{table}
+
+For the second groups of experiment we try to change the parameter k that establish the number of states taken for replaying but we also changed the training procedure. By following more strictly the training procedure in \cite{her} (in detail what explained in Appendix A) we perform a training with 200 epoches and each epoch is formed by 50 cycle and each cycle by 16 episodes. In this way each epoches contains $16 * 50=800$ iterations. The concept is the same of the previous experiments but in this case the learning is performed only if the robotic arm effectively reach the goal. In fact the end of each cycle are performed 40 optimization steps in which the learning takes place. In this case a real episodic HER is implemented. We started by taking 8 random box stored positions and then if, for each of them, the condition that the random box position is closer to the goal with respect the initial position (it means that the box has been moved toward the goal), we stored this current transition. However as previously mentioned the learning is done only at the end of each cycle. Also this approach works, in fact as mentioned in \cite{her} for each value of k in the episodic HER we can obtain good results. The problem of this approach is that, because it takes random transitions from the replay buffer and so random position for the box, the results can vary significantly. In fact we reached very different results as we can see from the plots in figure ?; in different experiments with the same parameters, sometimes the robot doesn't learn and sometimes it reached a success equal to 92\% or equal to 78\% (reported in Figure). The Table \ref{exp2} is a report of the parameters used for this experiment.
+
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|r|} 
+
+
+
+\hline
+
+\multicolumn{2}{|c|}{}\\
+\multicolumn{2}{|c|}{\textbf{\large    Experiment 2 Parameters Table}}\\
+\multicolumn{2}{|c|}{}\\
+
+\hline
+
+Batch Size 					& 128			\\
+Number of Episodes			& 16			\\
+Number of Cycles			& 50			\\
+Number of Epoches			& 200			\\
+k							& 8				\\
+
+
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{exp2} Table of the specific parameters used for the second experiment with k equal to 8 random transitions.}
+\end{table}
 
 
 

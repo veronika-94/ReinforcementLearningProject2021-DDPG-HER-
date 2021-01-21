@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  17 JAN 2021 10:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.22)  21 JAN 2021 14:47
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -120,18 +120,18 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ) (Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
 
 ("C:\Users\Veronica\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\mkii\sup
 p-pdf.mkii"
@@ -160,7 +160,7 @@ Chapter 1.
 <reinforcement.jpg, id=7, 421.575pt x 162.6075pt>
 File: reinforcement.jpg Graphic file (type jpg)
 <use reinforcement.jpg>
-Package pdftex.def Info: reinforcement.jpg  used on input line 19.
+Package pdftex.def Info: reinforcement.jpg  used on input line 21.
 (pdftex.def)             Requested size: 210.78697pt x 81.30354pt.
 [1
 
@@ -168,19 +168,19 @@ Package pdftex.def Info: reinforcement.jpg  used on input line 19.
 <fetchpush.png, id=17, 256.5585pt x 185.493pt>
 File: fetchpush.png Graphic file (type png)
 <use fetchpush.png>
-Package pdftex.def Info: fetchpush.png  used on input line 41.
+Package pdftex.def Info: fetchpush.png  used on input line 43.
 (pdftex.def)             Requested size: 128.27893pt x 92.74626pt.
 Missing character: There is no â in font cmr10!
 Missing character: There is no ˆ in font cmr10!
 Missing character: There is no ’ in font cmr10!
  [2 <./fetchpush.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 50.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 52.
 
 ("C:\Users\Veronica\AppData\Local\Programs\MiKTeX 2.9\tex/latex\base\omscmr.fd"
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 52.
  [3]
 Chapter 2.
 [4
@@ -189,10 +189,10 @@ Chapter 2.
 <ddpg.png, id=29, 531.78674pt x 392.06474pt>
 File: ddpg.png Graphic file (type png)
 <use ddpg.png>
-Package pdftex.def Info: ddpg.png  used on input line 75.
+Package pdftex.def Info: ddpg.png  used on input line 77.
 (pdftex.def)             Requested size: 345.65729pt x 254.83905pt.
 
-Overfull \hbox (0.65729pt too wide) in paragraph at lines 75--76
+Overfull \hbox (0.65729pt too wide) in paragraph at lines 77--78
  [][] 
  []
 
@@ -200,7 +200,7 @@ Overfull \hbox (0.65729pt too wide) in paragraph at lines 75--76
 <her.png, id=34, 666.69075pt x 540.21825pt>
 File: her.png Graphic file (type png)
 <use her.png>
-Package pdftex.def Info: her.png  used on input line 88.
+Package pdftex.def Info: her.png  used on input line 90.
 (pdftex.def)             Requested size: 333.34456pt x 270.10846pt.
 
 
@@ -210,7 +210,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <fetchcomparison.png, id=39, 520.94624pt x 341.47575pt>
 File: fetchcomparison.png Graphic file (type png)
 <use fetchcomparison.png>
-Package pdftex.def Info: fetchcomparison.png  used on input line 106.
+Package pdftex.def Info: fetchcomparison.png  used on input line 108.
 (pdftex.def)             Requested size: 338.61105pt x 221.9566pt.
 
 
@@ -221,27 +221,27 @@ Chapter 3.
 [9
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 138--140
+Underfull \hbox (badness 10000) in paragraph at lines 140--142
 
  []
 
-[10] [11]
-Underfull \hbox (badness 1112) in paragraph at lines 188--189
+[10] [11] [12]
+Underfull \hbox (badness 1112) in paragraph at lines 240--241
 []\OT1/cmr/m/n/10 Plappert, Matthias, et al. "Multi-goal re-in-force-ment learn
 -ing: Chal-
  []
 
-[12
+[13
 
 ] (Report.aux) ) 
 Here is how much of TeX's memory you used:
- 1720 strings out of 493312
- 22468 string characters out of 3138889
- 83142 words of memory out of 3000000
- 5281 multiletter control sequences out of 15000+200000
+ 1722 strings out of 493312
+ 22480 string characters out of 3138889
+ 86164 words of memory out of 3000000
+ 5283 multiletter control sequences out of 15000+200000
  10581 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,8n,20p,1997b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,8n,20p,2337b,300s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Veronica/AppData/Loca
@@ -256,9 +256,9 @@ ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/U
 sers/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmsy7.pfb><C:/Users/Veronica/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmti10.pfb>
-Output written on Report.pdf (13 pages, 634722 bytes).
+Output written on Report.pdf (14 pages, 639780 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
+ 97 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
