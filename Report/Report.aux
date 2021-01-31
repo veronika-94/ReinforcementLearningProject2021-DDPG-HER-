@@ -9,37 +9,50 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces  FetchPush-v1 Gym environment.}}{2}}
 \newlabel{Fig: fetchpush}{{1.2}{2}}
 \citation{ddpg}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Implementation Assignment }{4}}
+\citation{ddpg}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Implementation Assignment }{3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ddpgalgo}{{2}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}DDPG + HER Algorithm}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}DDPG (Deep Deterministic Policy Gradient)}{4}}
-\citation{ddpg}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces  Pseudocode of DDPG algorithm.}}{5}}
-\newlabel{Fig: ddpg}{{2.1}{5}}
+\newlabel{ddpgalgo}{{2}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}DDPG + HER Algorithm}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}DDPG (Deep Deterministic Policy Gradient)}{3}}
 \citation{her}
 \citation{her}
 \citation{multigoal}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}HER (Hindsight Experience Replay)}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces  Pseudocode of HER algorithm.}}{7}}
-\newlabel{Fig: her}{{2.2}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}DDPG and HER work together}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces  This Figure illustrates the comparison between Vanilla DDPG and DDPG+HER with sparse and dense rewards in all four Fetch environments provided by OpenAI Gym.}}{8}}
-\newlabel{Fig: comparison}{{2.3}{8}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Experiments and Results }{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces  Pseudocode of DDPG algorithm.}}{4}}
+\newlabel{Fig: ddpg}{{2.1}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}HER (Hindsight Experience Replay)}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces  Pseudocode of HER algorithm.}}{5}}
+\newlabel{Fig: her}{{2.2}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}DDPG and HER work together}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces  This Figure illustrates the comparison between Vanilla DDPG and DDPG+HER with sparse and dense rewards in all four Fetch environments provided by OpenAI Gym.}}{5}}
+\newlabel{Fig: comparison}{{2.3}{5}}
+\citation{her}
+\citation{her}
+\citation{her}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Training Procedure and Plots }{7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{exp}{{3}{9}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces  Table of the parameters used for all the experiments}}{10}}
-\newlabel{table}{{3.1}{10}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Experiments and Plots}{10}}
-\citation{her}
-\citation{her}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces  Table of the specific parameters used for the first two experiments.}}{11}}
-\newlabel{exp1}{{3.2}{11}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces  Table of the specific parameters used for the second experiment with k equal to 8 random transitions.}}{12}}
-\newlabel{exp2}{{3.3}{12}}
+\newlabel{exp}{{3}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces  Table of the parameters used for all the experiments}}{8}}
+\newlabel{table}{{3.1}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Experiments and Plots}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces  Table of the specific parameters used for the second experiment with k equal to 8 random transitions.}}{9}}
+\newlabel{exp2}{{3.2}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Plots obtained by setting $k=4$, success rate reached 93\%.}}{9}}
+\newlabel{k4}{{3.1}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Plots obtained by setting $k=8$, success rate reached 78\%.}}{9}}
+\newlabel{k8}{{3.2}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Plots obtained by setting $k=16$, success rate reached 92\%.}}{9}}
+\newlabel{k16}{{3.3}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Plots obtained by setting $k=24$, success rate reached 99\%.}}{9}}
+\newlabel{k24}{{3.4}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Plots of the normalized success rate for the 24 initial states taken, with normalized success rate equal to about 94\%.}}{10}}
+\newlabel{img5}{{3.5}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Plots of the normalized success rate for the 24 last states taken, with normalized success rate equal to about 92\%.}}{10}}
+\newlabel{img6}{{3.6}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces  Table of the specific parameters used for the second two experiments.}}{10}}
+\newlabel{exp1}{{3.3}{10}}
 \bibcite{multigoal}{1}
 \bibcite{her}{2}
 \bibcite{ddpg}{3}

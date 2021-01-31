@@ -1,4 +1,9 @@
 \documentclass[a4paper]{report}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
 \usepackage{amsmath} 
 \usepackage{graphicx}
 %\usepackage{geometry}
@@ -119,7 +124,7 @@ The second reason is that a dense reward biases the policy to a specific strateg
 
 
 
-\chapter{Experiments and Results \label{exp}}
+\chapter{Training Procedure and Plots \label{exp}}
 
 As previously  mentioned, our work consisted of exploring in FetchPush-v1 environment, implementing the algorithm DDPG+HER. To implement our work we write a code in Python3 and TensorFlow 2.0. The code is structured in this way:
 
@@ -174,7 +179,9 @@ Replay Buffer dimension		& 1000000	\\
 
 \section{Experiments and Plots}
 We performed some experiments changing the way in which HER is implemented.
-First of all we implemented first only the DDPG algorithm but as we expected this provided no good results. Then we added also HER. In this experiment we implement a  sort of \textit{episode} HER. It takes k random states from the same episode and replays them as the transition being replayed. We perform this in two ways, by taking the first 24 states of the same episode and the last 24 states of the same episode. They are not randomly taken. We performed a learning with 60000 episodes, and each episode is formed by 50 iterations or steps. During these iterations we evoked the learning function from the agent class each time also if the robotic arm didn't still reached the goal, so when \textit{done=False} and after adding the current transition to the replay buffer. If the robot reached the goal and so \textit{done=True}, we increased the success rate. While for each episode, after iterating all the 50 steps, if the robot has not still reached the goal and so \textit{done=False}, we take the final box position from the state (these are the third, forth and fifth components of the state). At this point if the HER condition is verified, such that the distance between the final box position and the initial box position is less or equal than 0.05, for each of the 24 states taken from the beginning or from the end, we take a random stored position for the box in the current episode. Now if the final box position is more close to the goal than to the starting position, we stored this transition with the random position of the box, and we perform the learning. However the learning is performed also if the last condition is not verified and so for each of the 24 transition considered. This because we consider the fact not only that the box is near to the goal but also the fact that the end-effector of the robotic arm has moved the box. As we can see the learning produces good results reaching a success around 90\% both by considering the first and the last 24 stored transition. However we have to mentioned that the training by considering the first 24 transitions is faster that the one that considers the last 24 transitions. In the Table \ref{exp1} are reported the specific parameters used for the first two experiments. The results are illustrated in Figure ? and Figure ?.
+First of all we implemented first only the DDPG algorithm but as we expected this provided no good results. Then we added also HER. In this experiment we implement a  sort of \textit{episode} HER. It takes k random states from the same episode and replays them as the transition being replayed. 
+For the first groups of experiment we try to change the parameter k that establish the number of states taken for replaying. Following the procedure implemented in \cite{her} we performed these experiments to show that changing the value of k, the system is always able to learn, as explained in \cite{her}. By following more strictly their training procedure (in detail what explained in Appendix A) we performed a training with 200 epoches and each epoch is formed by 50 cycle and each cycle by 16 episodes. In this way each epoches contains $16 * 50=800$ iterations. The learning is performed only if the robotic arm effectively reach the goal. In fact at the end of each cycle are performed 40 optimization steps in which the learning takes place. In this case a real episodic HER is implemented. We started by taking k random box stored positions and then if, for each of them, the condition that the random box position is closer to the goal with respect the initial position (it means that the box has been moved toward the goal), we stored this current transition. However as previously mentioned the learning is done only at the end of each cycle. This approach works, in fact as mentioned in \cite{her} for each value of k in the episodic HER we can obtain good results. However, we found a problem with this approach to which we have tried to give an explanation. The problem is that we reached different results as we can see from the plots in Figure \ref{k4}, \ref{k8}, \ref{k16}, \ref{k24}; moreover in different experiments with the same parameter \textit{k}, sometimes the robot doesn't learn and sometimes it reach a normalized success rate equal to 92\%, 98\% or equal to 78\% (reported in Figure). We think that the problem could be in the fact that the procedure takes random transitions from the replay buffer and so random position for the box. Moreover during the training we noted that if the initial random positions are good positions, in such a way that the condition of HER is verified, the system generally learns and the results are quite better. Another possible reason is that the learning should be slower and so increasing the number of epochs, also in that case it should be able to reach a good value of success rate. As we can see from the plot, for different value of the parameter \textit{k} we are able to learn. In Figure \ref{k16} we can see that after reaching a normalized success rate equal to 92\%, this rate decreases. However in the code we imposed a condition for which the model are saved only if the \textit{win\_percent} value is higher than the one in the previous step, so it means that the models have not been updated when the value of \textit{win\_percent} decreases. As test we verify the models for which we have reached the best normalized success rate, so the models collected with k=24. We set 100 as the number of iterations for the test, and only 1 time on 100 it didn't reach the goal.
+The Table \ref{exp2} is a report of the parameters used for these experiments.
 
 
 \begin{table}[h]
@@ -186,35 +193,7 @@ First of all we implemented first only the DDPG algorithm but as we expected thi
 \hline
 
 \multicolumn{2}{|c|}{}\\
-\multicolumn{2}{|c|}{\textbf{\large       Experiment 1 Parameters Table}}\\
-\multicolumn{2}{|c|}{}\\
-
-\hline
-
-Batch Size 					& 64			\\
-Number of episodes			& 60000			\\
-k							& 24 (first and last)	\\
-
-
-\hline
-\end{tabular}
-\end{center}
-\caption{\label{exp1} Table of the specific parameters used for the first two experiments.}
-\end{table}
-
-For the second groups of experiment we try to change the parameter k that establish the number of states taken for replaying but we also changed the training procedure. By following more strictly the training procedure in \cite{her} (in detail what explained in Appendix A) we perform a training with 200 epoches and each epoch is formed by 50 cycle and each cycle by 16 episodes. In this way each epoches contains $16 * 50=800$ iterations. The concept is the same of the previous experiments but in this case the learning is performed only if the robotic arm effectively reach the goal. In fact the end of each cycle are performed 40 optimization steps in which the learning takes place. In this case a real episodic HER is implemented. We started by taking 8 random box stored positions and then if, for each of them, the condition that the random box position is closer to the goal with respect the initial position (it means that the box has been moved toward the goal), we stored this current transition. However as previously mentioned the learning is done only at the end of each cycle. Also this approach works, in fact as mentioned in \cite{her} for each value of k in the episodic HER we can obtain good results. The problem of this approach is that, because it takes random transitions from the replay buffer and so random position for the box, the results can vary significantly. In fact we reached very different results as we can see from the plots in figure ?; in different experiments with the same parameters, sometimes the robot doesn't learn and sometimes it reached a success equal to 92\% or equal to 78\% (reported in Figure). The Table \ref{exp2} is a report of the parameters used for this experiment.
-
-
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{|l|r|} 
-
-
-
-\hline
-
-\multicolumn{2}{|c|}{}\\
-\multicolumn{2}{|c|}{\textbf{\large    Experiment 2 Parameters Table}}\\
+\multicolumn{2}{|c|}{\textbf{\large    Parameters Table for the First Set of Experiments}}\\
 \multicolumn{2}{|c|}{}\\
 
 \hline
@@ -222,8 +201,9 @@ For the second groups of experiment we try to change the parameter k that establ
 Batch Size 					& 128			\\
 Number of Episodes			& 16			\\
 Number of Cycles			& 50			\\
-Number of Epoches			& 200			\\
-k							& 8				\\
+Number of Epochs			& 200			\\
+k							& 4-8-16-24		\\
+Number of Epochs for test	& 100			\\
 
 
 \hline
@@ -231,6 +211,77 @@ k							& 8				\\
 \end{center}
 \caption{\label{exp2} Table of the specific parameters used for the second experiment with k equal to 8 random transitions.}
 \end{table}
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{k4.png}
+\caption{\label{k4}Plots obtained by setting $k=4$, success rate reached 93\%.}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{k8.png}
+\caption{\label{k8}Plots obtained by setting $k=8$, success rate reached 78\%.}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{k16.png}
+\caption{\label{k16}Plots obtained by setting $k=16$, success rate reached 92\%.}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{k24.png}
+\caption{\label{k24}Plots obtained by setting $k=24$, success rate reached 99\%.}
+\end{minipage}
+\end{figure}
+
+
+For the second two experiments we tried to modify the learning procedure. The concept is the same of the previous experiments. We perform this in two ways, by taking the first 24 states of the same episode and the last 24 states of the same episode. They are not randomly taken. We performed a learning with 50000 episodes, and each episode is formed by 50 iterations or steps. During these iterations we evoked the learning function from the agent class each time also if the robotic arm didn't still reached the goal, so when \textit{done=False} and after adding the current transition to the replay buffer. If the robot reached the goal and so \textit{done=True}, we increased the success rate. While for each episode, after iterating all the 50 steps, if the robot has not still reached the goal and so \textit{done=False}, we take the final box position from the state (these are the third, forth and fifth components of the state). At this point if the HER condition is verified, such that the distance between the final box position and the initial box position is less or equal than 0.05, for each of the 24 states taken from the beginning or from the end, we take a random stored position for the box in the current episode. Now if the final box position is more close to the goal than to the starting position, we stored this transition with the random position of the box, and we perform the learning. However the learning is performed also if the last condition is not verified and so for each of the 24 transition considered. This because we consider the fact not only that the box is near to the goal but also the fact that the end-effector of the robotic arm has moved the box. As we can see from Figure \ref{Fig: img5} and Figure \ref{Fig: img6} the learning produces good results reaching a success around 95\% both by considering the first and the last 24 stored transition and also the plots result to be very similar. However we have to mentioned that the training by considering the first 24 transitions is faster that the one that considers the last 24 transitions. In the Table \ref{exp1} are reported the specific parameters used for the first two experiments.
+
+
+\begin{figure}[h!]
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fetchpushnostroinitial.png}
+\caption{\label{img5}Plots of the normalized success rate for the 24 initial states taken, with normalized success rate equal to about 94\%.}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fetchpushnostrofinal.png}
+\caption{\label{img6}Plots of the normalized success rate for the 24 last states taken, with normalized success rate equal to about 92\%.}
+\end{minipage}
+\end{figure}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|r|} 
+
+
+
+\hline
+
+\multicolumn{2}{|c|}{}\\
+\multicolumn{2}{|c|}{\textbf{\large       Parameters Table for the Second Set of Experiments}}\\
+\multicolumn{2}{|c|}{}\\
+
+\hline
+
+Batch Size 					& 64			\\
+Number of episodes			& 50000			\\
+k							& 24 (first and last)	\\
+
+
+\hline
+\end{tabular}
+\end{center}
+\caption{\label{exp1} Table of the specific parameters used for the second two experiments.}
+\end{table}
+
+
 
 
 
