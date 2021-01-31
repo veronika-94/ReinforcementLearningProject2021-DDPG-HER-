@@ -1,7 +1,6 @@
 import gym
 import numpy as np
 from ddpg_tf2 import Agent
-from utils import plotLearning
 import mujoco_py
 import random
 import matplotlib.pyplot as plt
@@ -43,10 +42,7 @@ if __name__ == '__main__':
         agent.load_models()
 
         for episode in range(100):
-                #observation['observation'] = env.reset()
                 env_dict = env.reset()
-                #action = env.action_space.sample()
-                #env_dict, reward, done, info = env.step(action)
                 state = env_dict['observation']
                 goal = env_dict['desired_goal']
                 done=False
@@ -64,11 +60,6 @@ if __name__ == '__main__':
                             done = True
                         state = state_
                         if done:
-                            #final_box_pos =[]
-                            #for o in range(3,6):
-                                #final_box_pos.append(state[o])
-                            #final_box_pos = np.array(final_box_pos)
-                            #if  np.linalg.norm(final_box_pos - initial_box, axis=-1)>=0.005
                             success += 1
                             print('episode finished after steps                                ', p )
                             break
@@ -86,10 +77,7 @@ if __name__ == '__main__':
             for cycle in range(n_cycles):
                 
                 for episode in range(n_episodes):
-                    #observation['observation'] = env.reset()
                     env_dict = env.reset()
-                    #action = env.action_space.sample()
-                    #env_dict, reward, done, info = env.step(action)
                     state = env_dict['observation']
                     goal = env_dict['desired_goal']
                     done=False
@@ -116,45 +104,29 @@ if __name__ == '__main__':
                             if not load_checkpoint:
                                 agent.remember(state, action, reward, state_, done, goal)
                                 transition.append((state, action, reward, state_, goal, achieved_goal1))
-                                #agent.learn()
                             if reward ==0:
                                 done = True
                             state = state_
                             if done:
-                                #final_box_pos =[]
-                                #for o in range(3,6):
-                                    #final_box_pos.append(state[o])
-                                #final_box_pos = np.array(final_box_pos)
-                                #if  np.linalg.norm(final_box_pos - initial_box, axis=-1)>=0.005
                                 success += 1
                                 print('episode finished after steps                                ', p )
                                 break
                     if not done:
                         if not load_checkpoint:
-                            
-                            #print('success is ', success, 'after', episode, 'episodes')
-                            #final_box_pos =[] 
-                            #for l in range(3,6):
-                             #   final_box_pos.append(state[l])
-                            #final_box_pos = np.array(final_box_pos)
-                            #if np.linalg.norm(final_box_pos - initial_box, axis=-1)>=0.005: ## entering her #
-                                #we want the distance to be greater than 0, since it is the distance between initial and final,
+                            #we want the distance to be greater than 0, since it is the distance between initial and final,
                                 # that is 0 for most cases.
                                 for _ in range(24): #sampling strategy is "episodic"  
                                     index = random.randint(0,48)
                                     box_rand = np.copy(transition[index][5])
-                                    #end_eff_pos = transition[_][3][:3]
                                     if  np.linalg.norm(box_rand - goal, axis=-1)+0.005 < np.linalg.norm(goal - initial_box, axis=-1):
                                         #this condition needs to be modified, it doesn't make that much sense... even if it works!!
                                          print('                                                                                        yeah!!')
                                          agent.remember(transition[index][0], transition[index][1], 0,
                                                                transition[index][3], True, box_rand)
-                                         #agent.learn()
                                          
                                 
                                     agent.remember(transition[index][0], transition[index][1], transition[index][2],
                                                                transition[index][3], False, box_rand)
-                                    #agent.learn()
                 #at the end of each cycle are performed 40 optimization steps:
                 for _ in range(40):
                     agent.learn()
@@ -163,8 +135,6 @@ if __name__ == '__main__':
             print('succes after the ', epoch, 'epoch is ', success)        
 
             if not load_checkpoint:
-                #if episode > 0 and episode % 100 == 0:
-                    #print('success rate for last 100 episodes after', episode, ':', success)
                 if len(win_percent) > 0 and (success / 800) > max(win_percent):
                     agent.save_models()
                     print('saving')
