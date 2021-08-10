@@ -1,5 +1,8 @@
 # RL-PROJECT
 
+Simone De Angelis\
+Veronica Romano\
+
 Links: 
 -  https://openai.com/blog/ingredients-for-robotics-research/   			(DDPG+HER)
 -  https://spinningup.openai.com/en/latest/algorithms/ddpg.html 			(DDPG)
